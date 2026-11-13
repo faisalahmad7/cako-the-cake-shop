@@ -1,0 +1,126 @@
+/* ---------------------------------------------------------------- shell: header, phone menu, footer, phone action bar (brief section 8) */
+.top {
+  --text: var(--cream); --text-2: var(--cream-2); --focus: var(--cream); --link-line: var(--gold); --btn2-line: var(--gold); --btn2-hover: rgba(205, 166, 107, 0.12);
+  position: fixed; inset: 0 0 auto 0; z-index: var(--z-header); color: var(--cream);
+  border-bottom: 1px solid transparent;
+  transition: background-color var(--dur-hover) var(--ease-out), border-color var(--dur-hover) var(--ease-out), transform 0.5s var(--ease-out);
+}
+.top.is-solid { background: rgb(33 20 16 / 0.94); border-bottom-color: var(--gold-hair); }
+.top.is-hidden { transform: translateY(-101%); }
+.top__bar { display: flex; align-items: center; gap: 16px; min-height: var(--top-h); }
+.brand { display: inline-flex; flex: none; border-radius: 50%; transition: transform 0.6s var(--ease-out); }
+.brand:hover { transform: rotate(-10deg); }
+.brand img { width: 52px; height: 52px; }
+.nav { display: none; }
+.nav ul { display: flex; gap: 4px; list-style: none; margin: 0; padding: 0; }
+.nav a {
+  position: relative; display: inline-flex; align-items: center; min-height: 44px; padding: 0 14px;
+  font-size: 0.9375rem; font-weight: 500; text-decoration: none; color: var(--cream);
+}
+.nav a::after {
+  content: ""; position: absolute; left: 14px; right: 14px; bottom: 9px; height: 1px; background: var(--gold);
+  transform: scaleX(0); transform-origin: left; transition: transform var(--dur-hover) var(--ease-out);
+}
+.nav a:hover::after, .nav a:focus-visible::after, .nav a[aria-current="page"]::after { transform: scaleX(1); }
+.top__right { margin-inline-start: auto; display: flex; align-items: center; gap: 10px; }
+.top .top__call, .top .top__wa { display: none; }
+.top__wa { transition: opacity var(--dur-hover) var(--ease-out), transform var(--dur-hover) var(--ease-out); }
+.top.hide-wa .top__wa { opacity: 0; pointer-events: none; transform: translateY(-4px); }
+
+/* the status pill (site.js fills [data-live] in Pune time) */
+.status-chip {
+  display: inline-flex; align-items: center; gap: 9px; min-height: 36px; padding: 0 14px;
+  border: 1px solid var(--line-night); border-radius: var(--r-pill); font-size: 0.8125rem; font-weight: 500; white-space: nowrap; color: var(--cream);
+}
+.status-chip__dot { width: 8px; height: 8px; border-radius: 50%; background: var(--candle); box-shadow: 0 0 0 4px rgba(255, 181, 71, 0.18); flex: none; }
+.is-closed .status-chip__dot { background: var(--smoke); box-shadow: none; }
+
+.icon-btn {
+  display: inline-grid; place-items: center; width: 44px; height: 44px; flex: none; padding: 0;
+  border: 1px solid var(--gold-hair); border-radius: 50%; background: transparent; color: var(--text); text-decoration: none;
+  transition: background-color var(--dur-hover) var(--ease-out), border-color var(--dur-hover) var(--ease-out), transform var(--dur-press) var(--ease-out);
+}
+.icon-btn:hover { border-color: var(--gold); background: rgba(205, 166, 107, 0.12); }
+.icon-btn:active { transform: scale(0.94); }
+.icon-btn .icon { width: 20px; height: 20px; }
+
+@media (min-width: 960px) {
+  .nav { display: block; margin-inline-start: 28px; }
+  .top .top__call, .top .top__wa { display: inline-flex; }
+  .top .menu-btn { display: none; }
+}
+@media (max-width: 400px) {
+  .top .status-chip { padding: 0 11px; font-size: 0.75rem; }
+  .brand img { width: 46px; height: 46px; }
+}
+@media (max-width: 339px) { .top .status-chip { display: none; } }
+
+/* the pause / play motion control (WCAG 2.2.2) */
+.motion-btn .icon { width: 14px; height: 14px; }
+.motion-btn__play { display: none; }
+[data-motion="paused"] .motion-btn__play { display: inline; }
+[data-motion="paused"] .motion-btn__pause { display: none; }
+.motion-link { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0; border: 0; background: none; color: inherit; font-size: var(--fs-small); text-decoration: underline; text-decoration-color: var(--link-line); text-underline-offset: 0.3em; }
+
+/* phone menu: the one centred block on the site */
+.menu {
+  position: fixed; inset: 0; z-index: var(--z-menu); display: flex; flex-direction: column; overflow-y: auto;
+  background: var(--night-3); color: var(--cream); padding-bottom: max(24px, env(safe-area-inset-bottom));
+}
+.menu__head { display: flex; align-items: center; justify-content: space-between; min-height: var(--top-h); }
+.menu__head img { width: 52px; height: 52px; }
+.menu__nav { margin-top: clamp(24px, 6vh, 56px); text-align: center; }
+.menu__nav ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+.menu__nav a {
+  display: inline-flex; align-items: center; justify-content: center; min-height: 64px; padding: 4px 12px; text-decoration: none;
+  font-family: var(--f-display); font-weight: 500; font-size: clamp(2.375rem, 10vw, 3.25rem); line-height: 1.05; letter-spacing: var(--tr-h2);
+}
+.menu__nav a[aria-current="page"] { text-decoration: underline; text-decoration-color: var(--gold); text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
+.menu__foot { margin-top: auto; padding-top: 32px; display: grid; justify-items: center; gap: 18px; }
+.menu__actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 100%; }
+
+/* footer: night-3 under the double gold rule */
+.foot {
+  --text: var(--cream); --text-2: var(--cream-2); --orn: var(--gold); --focus: var(--cream); --link-line: var(--gold);
+  position: relative; overflow: hidden; background: var(--night-3); color: var(--cream);
+  padding: clamp(56px, 7vw, 96px) 0 28px;
+}
+.foot::before { /* the double rule: 1 px, 3 px gap, 1 px */
+  content: ""; position: absolute; inset: 0 0 auto 0; height: 5px; border-top: 1px solid var(--gold-hair); border-bottom: 1px solid var(--gold-hair);
+}
+.foot__grid { display: grid; gap: 40px; }
+.foot__brand { display: grid; gap: 18px; justify-items: start; }
+.foot__brand img { width: 88px; height: 88px; }
+.foot__tag { font-family: var(--f-display); font-size: var(--fs-name); line-height: 1.2; font-weight: 500; max-width: 18ch; }
+.foot__h { font-family: var(--f-text); font-size: var(--fs-eyebrow); font-weight: 500; color: var(--gold); margin-bottom: 12px; }
+.foot address, .foot p { color: var(--cream); max-width: 34ch; }
+.foot .small { color: var(--cream-2); }
+.foot__links { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+.foot__links a { display: inline-flex; min-height: 40px; align-items: center; text-decoration: none; }
+.foot__links a:hover { text-decoration: underline; text-decoration-color: var(--gold); }
+.foot__col { display: grid; gap: 10px; align-content: start; justify-items: start; }
+.foot__legal { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 24px; margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--line-night); font-size: var(--fs-small); color: var(--cream-2); }
+@media (min-width: 720px) { .foot__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1100px) { .foot__grid { grid-template-columns: 1.4fr 1fr 0.8fr 1fr; gap: 48px; } }
+
+/* phone action bar */
+.actionbar {
+  position: fixed; inset: auto 0 0 0; z-index: var(--z-bar); display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 8px;
+  padding: 8px 10px calc(8px + env(safe-area-inset-bottom)); background: var(--night-3); border-top: 1px solid var(--gold-hair);
+  transition: transform var(--dur-ui) var(--ease-out);
+}
+.actionbar.is-away { transform: translateY(110%); }
+.actionbar__btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; border-radius: var(--r-pill);
+  border: 1px solid var(--gold-hair); color: var(--cream); text-decoration: none; font-weight: 600; font-size: 0.9375rem;
+}
+.actionbar__btn .icon { width: 19px; height: 19px; }
+.actionbar__btn--wa { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.actionbar__btn:active { transform: scale(0.98); }
+@media (min-width: 960px) { .actionbar { display: none; } }
+@media (max-width: 359px) { .actionbar__btn .icon { display: none; } }
+
+@media (min-width: 960px) {
+  .top :is(.status-chip, .top__call) { transition: transform var(--dur-ui) var(--ease-out); }
+  .top.hide-wa :is(.status-chip, .top__call) { transform: translateX(var(--wa-shift, 0px)); }
+}

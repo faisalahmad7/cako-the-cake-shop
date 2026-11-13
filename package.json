@@ -1,0 +1,13 @@
+{
+  "name": "cako-the-cake-shop",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Cako The Cake Shop demo site: static HTML, CSS and JS, no dependencies.",
+  "scripts": {
+    "start": "node tools/serve.mjs",
+    "dev": "node tools/serve.mjs",
+    "build": "node tools/build-pages.mjs && node tools/build.mjs",
+    "preview": "node tools/serve.mjs dist",
+    "pages": "node tools/build-pages.mjs"
+  }
+}

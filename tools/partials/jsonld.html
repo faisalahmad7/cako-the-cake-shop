@@ -1,0 +1,62 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Bakery",
+      "@id": "https://www.example-cako.in/#bakery",
+      "name": "Cako The Cake Shop",
+      "alternateName": ["Cako Cake Shop", "Cako"],
+      "description": "Vegetarian-only cake shop and bakery on Upper Kondhwa Road, Bibvewadi, Pune. Open every day from 11 am to 12 midnight, with home delivery, takeaway and seating.",
+      "url": "https://www.example-cako.in/",
+      "logo": "https://www.example-cako.in/assets/brand/cako-badge.svg",
+      "image": ["https://www.example-cako.in/assets/img/og-cako.jpg"],
+      "telephone": "+918446966779",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Survey 658/9, Ambika Nagar, Upper Kondhwa Road, Bibvewadi",
+        "addressLocality": "Pune",
+        "addressRegion": "Maharashtra",
+        "postalCode": "411037",
+        "addressCountry": "IN"
+      },
+      "hasMap": "https://www.google.com/maps/search/?api=1&query=Survey+658%2F9%2C+Ambika+Nagar%2C+Upper+Kondhwa+Road%2C+Bibvewadi%2C+Pune%2C+Maharashtra+411037",
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+          "opens": "11:00",
+          "closes": "23:59"
+        }
+      ],
+      "servesCuisine": ["Bakery", "Cakes", "Desserts"],
+      "priceRange": "₹",
+      "currenciesAccepted": "INR",
+      "amenityFeature": [
+        { "@type": "LocationFeatureSpecification", "name": "Vegetarian only", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Home delivery", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Takeaway", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Seating", "value": true }
+      ],
+      "potentialAction": {
+        "@type": "OrderAction",
+        "name": "Order on WhatsApp",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://wa.me/918446966779",
+          "actionPlatform": ["https://schema.org/DesktopWebPlatform", "https://schema.org/MobileWebPlatform"]
+        }
+      },
+      "sameAs": []
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.example-cako.in/#website",
+      "url": "https://www.example-cako.in/",
+      "name": "Cako The Cake Shop",
+      "inLanguage": "en-IN",
+      "publisher": { "@id": "https://www.example-cako.in/#bakery" }
+    }
+  ]
+}
+</script>
