@@ -24,8 +24,10 @@ fs.writeFileSync(path.join(cssDir, 'site.css'),
   '/* Built by tools/build-pages.mjs from assets/css/src/*.css and assets/css/parts/. Edit those files, not this one. */\n' +
   ordered.map((f) => `\n/* ==== ${path.relative(cssDir, f).replaceAll('\\', '/')} ==== */\n${fs.readFileSync(f, 'utf8').trim()}\n`).join(''));
 
-for (const [f, html] of [['index.html', home], ['cakes.html', cakes], ['order.html', order], ['visit.html', visit]]) fs.writeFileSync(path.join(root, f), html);
+// asset URLs are root-absolute: Vite serves and copies public/ as is, and bundles the CSS and JS
+const abs = (html) => html.replace(/(="|, )assets\//g, '$1/assets/').replace(/="(favicon\.svg|site\.webmanifest)"/g, '="/$1"');
+for (const [f, html] of [['index.html', home], ['cakes.html', cakes], ['order.html', order], ['visit.html', visit]]) fs.writeFileSync(path.join(root, f), abs(html));
 // sitemap for launch (domain is a placeholder)
-fs.writeFileSync(path.join(root, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${NAV.map(([h]) => `  <url><loc>${SITE}${h === 'index.html' ? '' : h}</loc></url>`).join('\n')}\n</urlset>\n`);
-fs.writeFileSync(path.join(root, 'robots.txt'), `User-agent: *\nAllow: /\nSitemap: ${SITE}sitemap.xml\n`);
+fs.writeFileSync(path.join(root, 'public/sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${NAV.map(([h]) => `  <url><loc>${SITE}${h === 'index.html' ? '' : h}</loc></url>`).join('\n')}\n</urlset>\n`);
+fs.writeFileSync(path.join(root, 'public/robots.txt'), `User-agent: *\nAllow: /\nSitemap: ${SITE}sitemap.xml\n`);
 console.log('pages written: index, cakes, order, visit (+ sitemap.xml, robots.txt, assets/css/site.css)');

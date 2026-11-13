@@ -42,6 +42,7 @@ const hTag = (level) => `h${Math.min(6, Math.max(2, level | 0 || 3))}`;
 function readManifest() {
   const here = path.dirname(fileURLToPath(import.meta.url));
   const tries = [
+    path.resolve(here, '../../../public/assets/img/cut/manifest.json'),
     path.resolve(here, '../../../assets/img/cut/manifest.json'),
     path.resolve(here, '../../Cako the cake shop/assets/img/cut/manifest.json'),
     path.resolve(process.cwd(), 'assets/img/cut/manifest.json'),

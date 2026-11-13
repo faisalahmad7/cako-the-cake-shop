@@ -103,12 +103,7 @@ ${body}
   <a class="actionbar__btn" href="${TEL}">${icon('i-phone')}<span>Call</span></a>
   <a class="actionbar__btn" href="${DIRECTIONS}" target="_blank" rel="noopener">${icon('i-navigation')}<span>Directions</span></a>
 </nav>
-<script src="assets/vendor/gsap.min.js" defer></script>
-<script src="assets/vendor/ScrollTrigger.min.js" defer></script>
-<script src="assets/vendor/lenis.min.js" defer></script>
-<script src="assets/js/site.js" defer></script>
-${parts.filter((p) => fs.existsSync(path.join(root, 'assets/js/parts', `${p}.js`))).map((p) => `<script src="assets/js/parts/${p}.js" defer></script>`).join('\n')}
-<script src="assets/js/motion.js" defer></script>
+<script type="module" src="/src/entries/${parts.includes('home') ? 'home' : parts.includes('midnight') ? 'visit' : 'base'}.js"></script>
 </body>
 </html>
 `;

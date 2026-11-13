@@ -163,7 +163,7 @@ export default page({
         <div class="custom__window framed" data-sketch>
           <div class="custom__clip">
             ${photo('strawberry-butterfly', ALT['strawberry-butterfly'], '(min-width: 960px) 40vw, 90vw')}
-            <div class="custom__sketch" aria-hidden="true">${exists('assets/img/sketch-butterfly.svg') ? '<img src="assets/img/sketch-butterfly.svg" width="400" height="500" alt="" loading="lazy">' : ''}<span class="custom__sketch-note">The idea</span></div>
+            <div class="custom__sketch" aria-hidden="true">${exists('public/assets/img/sketch-butterfly.svg') ? '<img src="assets/img/sketch-butterfly.svg" width="400" height="500" alt="" loading="lazy">' : ''}<span class="custom__sketch-note">The idea</span></div>
           </div>
         </div>
         <div class="custom__copy" data-assumed>

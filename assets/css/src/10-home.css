@@ -336,3 +336,10 @@ html.has-motion .custom__sketch-note { display: block; }
   .mclock__h { font-size: clamp(2.25rem, 1.1rem + 1.8vw, 2.875rem); }
   .mclock__steps { margin-top: 4px; }
 }
+
+/* refinements (client round 3): photos fill the tiers; a larger hero cake; a larger flavour hand */
+.hero .pcake__p img { width: min(97%, var(--H) * 0.98); }
+@media (min-width: 960px) { .hero__cake { width: min(100%, 620px, 70svh); } }
+.fan__card { --w: clamp(164px, 22vw, 320px); }
+.flavours__table { min-height: clamp(420px, 54vw, 700px); }
+@media (min-width: 960px) { .flavours__pick { grid-column: 1 / 6; } .flavours__table { grid-column: 6 / 13; } }
